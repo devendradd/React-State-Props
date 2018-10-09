@@ -2,7 +2,23 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import ParentComponent from './components/ParentCompoenent';
+import SecondParentComponent from './components/SecondParentComponent';
+
 class App extends Component {
+
+  constructor(){
+    super();
+
+    this.chanegChildsState = this.chanegChildsState.bind(this);
+  }
+
+  chanegChildsState(){
+    // this.refs.firstParent.setState()
+    console.log(this.firstParent);
+    this.firstParent.setState({fruites:[]})
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,7 +36,10 @@ class App extends Component {
             Learn React
           </a>
         </header>
-      </div>
+
+        <ParentComponent ref={node => this.firstParent = node} />
+        <input type="button" value="Manipulate CHilds state" onClick={this.chanegChildsState} />
+        </div>
     );
   }
 }
